@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+function getHumanChoice() {
+    let choice = prompt("Enter Rock, Paper, or Scissors:");
+    return choice.toLowerCase();
+}
+
+function getComputerChoice() {
+    const choices = ["rock", "paper", "scissors"];
+    return choices[Math.floor(Math.random() * choices.length)];
+}
+
+function playRound(humanChoice, computerChoice) {
+    console.log(`You chose: ${humanChoice}`);
+    console.log(`Computer chose: ${computerChoice}`);
+    
+    if (humanChoice === computerChoice) {
+        console.log("It's a tie!");
+        return "tie";
+    }
+    
+    if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")
+    ) {
+        console.log("You win this round!");
+        return "human";
+    } else {
+        console.log("Computer wins this round!");
+        return "computer";
+    }
+}
+
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
+    
+    for (let i = 0; i < 5; i++) {
+        console.log(`Round ${i + 1}`);
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+        let result = playRound(humanChoice, computerChoice);
+
+        if (result === "human") {
+            humanScore++;
+        } else if (result === "computer") {
+            computerScore++;
+        }
+    }
+    
+    console.log("Final Score:");
+    console.log(`Human: ${humanScore}, Computer: ${computerScore}`);
+    
+    if (humanScore > computerScore) {
+        console.log("Congratulations! You win the game!");
+    } else if (humanScore < computerScore) {
+        console.log("Computer wins the game! Better luck next time.");
+    } else {
+        console.log("It's a tie game!");
+    }
+}
+
+playGame();
+</script>
+<body>
+    
+</body>
+</html>
